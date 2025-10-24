@@ -38,12 +38,12 @@ export default function Navbar() {
               {navItems.map((item) => (
                 <NavigationMenuItem key={item}>
                   <NavigationMenuLink asChild>
-                    <Link
-                      to={`/${item === "Home" ? "" : item.toLowerCase()}`}
+                    <a
+                      href={`/${item === "Home" ? "" : item.toLowerCase()}`}
                       className="text-gray-700 hover:text-black font-medium transition-colors"
                     >
                       {item}
-                    </Link>
+                    </a>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
@@ -54,12 +54,12 @@ export default function Navbar() {
         {/* Right side (Cart + Mobile Menu) */}
         <div className="flex items-center gap-4 relative">
           {/* Cart icon - always visible */}
-          <Link to="/cart" className="relative">
+          <a href="/cart" className="relative">
             <ShoppingBag className="w-5 h-5 cursor-pointer hover:text-black text-gray-700 transition" />
             <span className="absolute -top-2 -right-2 bg-black text-white text-xs font-semibold w-4 h-4 flex items-center justify-center rounded-full">
               0
             </span>
-          </Link>
+          </a>
 
           {/* Mobile Menu (Sheet Drawer) */}
           <div className="md:hidden">
@@ -74,19 +74,19 @@ export default function Navbar() {
                 <SheetHeader>
                   <SheetTitle>ECOM</SheetTitle>
                   <SheetDescription>
-                    React.js ECOM Cart Project With Redux Toolkit.
+                    React.js ECOM Cart Project With Context API.
                   </SheetDescription>
                 </SheetHeader>
                 <Separator />
                 <div className="flex flex-col space-y-2 pl-4 pt-2">
                   {navItems.map((item) => (
-                    <Link
+                    <a
                       key={item}
-                      to={`/${item === "Home" ? "" : item.toLowerCase()}`}
+                      href={`/${item === "Home" ? "" : item.toLowerCase()}`}
                       className="text-md text-gray-800 hover:text-black font-semibold transition-colors"
                     >
                       {item}
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </SheetContent>
