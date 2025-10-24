@@ -1,7 +1,7 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Star } from "lucide-react";
+import { Eye, ShoppingCart, Star } from "lucide-react";
 
 type Product = {
   id: string;
@@ -81,13 +81,20 @@ export default function ProductCard({ product }: { product: Product }) {
       </CardContent>
 
       {/* Footer */}
-      <CardFooter className="px-4 pb-4 pt-1">
+      <CardFooter className="px-4 pb-4 pt-1 gap-2 w-full overflow-hidden flex items-center justify-center">
         <Button
           size="sm"
-          className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium gap-2"
+          className="w-1/2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium gap-2 cursor-pointer"
         >
           <ShoppingCart className="w-4 h-4" />
           Add to Cart
+        </Button>
+        <Button
+          size="sm"
+          className="w-1/2 bg-gray-700 hover:bg-gray-800 text-white font-medium gap-2 cursor-pointer"
+        >
+          <a href={`/products/${product.id}`}> View More </a>
+          <Eye className="w-4 h-4 -mb-1" />
         </Button>
       </CardFooter>
     </Card>
