@@ -1,27 +1,32 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/homepage/Home";
-import Products from "./pages/products/Products";
-import Product from "./pages/product/Product";
+import { Suspense, lazy } from "react";
 import MainLayout from "./layout/MainLayout";
-import Contact from "./pages/contact/Contact";
-import About from "./pages/about/About";
-import NotFound from "./pages/notFound/NotFound";
-import Cart from "./pages/cart/Cart";
+import FallBackUI from "./components/local/loaders/fallBackUI/FallBackUI";
+const Home = lazy(() => import("./pages/homepage/Home"));
+const About = lazy(() => import("./pages/about/About"));
+const Products = lazy(() => import("./pages/products/Products"));
+const Product = lazy(() => import("./pages/product/Product"));
+const Contact = lazy(() => import("./pages/contact/Contact"));
+const Cart = lazy(() => import("./pages/cart/Cart"));
+const NotFound = lazy(() => import("./pages/notFound/NotFound"));
+
 function App() {
   return (
     <>
       <Router>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:id" element={<Product />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
+        <MainLayout>
+          <Suspense fallback={<FallBackUI />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<Product />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </MainLayout>
       </Router>
     </>
   );
